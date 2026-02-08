@@ -117,35 +117,27 @@
 <div class="footer-note">© National Testing Agency (NTA)</div>
 
 <script>
-  let captchaText = "";
+function login() {
+  const u = document.getElementById("user").value.trim();
+  const p = document.getElementById("pass").value.trim();
+  const c = document.getElementById("captchaInput").value.trim();
 
-  function generateCaptcha() {
-    captchaText = Math.random().toString(36).substring(2, 7).toUpperCase();
-    document.getElementById("captcha").innerText = captchaText;
+  if (c !== captchaText) {
+    document.getElementById("error").innerText = "Invalid CAPTCHA";
+    generateCaptcha();
+    return;
   }
 
-  function login() {
-    const u = document.getElementById("user").value;
-    const p = document.getElementById("pass").value;
-    const c = document.getElementById("captchaInput").value;
-
-    if (c !== captchaText) {
-      document.getElementById("error").innerText = "Invalid CAPTCHA";
-      generateCaptcha();
-      return;
-    }
-
-    if (u === "250310045660" && p === "@Rudra2007og") {
-      window.location.href = "result.html";
-    } else {
-      document.getElementById("error").innerText =
-        "Invalid Application Number or Password";
-    }
+  if (u === "250310045660" && p === "@Rudra2007og") {
+    window.location.href = "result.html";
+  } else {
+    document.getElementById("error").innerText =
+      "Invalid Application Number or Password";
   }
-
-  generateCaptcha();
+}
 </script>
 
 </body>
 </html>
+
 
