@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JEE Main 2026 Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      color: #000;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+    }
+
+    .top-bar img {
+      height: 70px;
+    }
+
+    .header-text {
+      text-align: center;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    .login-box {
+      width: 380px;
+      margin: 20px auto;
+      border: 1px solid #999;
+      padding: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #999;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background: #0b5ed7;
+      color: #fff;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .captcha {
+      margin-top: 15px;
+      font-weight: bold;
+      background: #f2f2f2;
+      padding: 10px;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+
+    .error {
+      margin-top: 10px;
+      color: red;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      margin: 20px 0;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="top-bar">
+  <img src="https://nta.ac.in/img/NTA_logo.png">
+  <img src="https://www.education.gov.in/sites/education.gov.in/themes/nexus_he/images/he-logo.png">
+</div>
+
+<div class="header-text">
+  <h2>JOINT ENTRANCE EXAMINATION (Main) - 2026</h2>
+  <h3>SESSION 1 (JANUARY 2026)</h3>
+  <p><b>NTA SCORE CARD: Paper 1 (B.E./B Tech.)</b></p>
+</div>
+
+<div class="login-box">
+  <h3 style="text-align:center">Candidate Login</h3>
+
+  <label>Application Number</label>
+  <input id="user">
+
+  <label>Password</label>
+  <input type="password" id="pass">
+
+  <div class="captcha" id="captcha"></div>
+
+  <label>Enter CAPTCHA</label>
+  <input id="captchaInput">
+
+  <button onclick="login()">Login</button>
+  <div class="error" id="error"></div>
+</div>
+
+<div class="footer-note">© National Testing Agency (NTA)</div>
+
+<script>
+  let captchaText = "";
+
+  function generateCaptcha() {
+    captchaText = Math.random().toString(36).substring(2, 7).toUpperCase();
+    document.getElementById("captcha").innerText = captchaText;
+  }
+
+  function login() {
+    const u = document.getElementById("user").value;
+    const p = document.getElementById("pass").value;
+    const c = document.getElementById("captchaInput").value;
+
+    if (c !== captchaText) {
+      document.getElementById("error").innerText = "Invalid CAPTCHA";
+      generateCaptcha();
+      return;
+    }
+
+    if (u === "1234567890" && p === "JEE2026") {
+      window.location.href = "result.html";
+    } else {
+      document.getElementById("error").innerText =
+        "Invalid Application Number or Password";
+    }
+  }
+
+  generateCaptcha();
+</script>
+
+</body>
+</html>
